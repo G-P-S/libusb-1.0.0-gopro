@@ -16,9 +16,14 @@
 		1D4B9EB8152611DF00053C68 /* darwin_usb.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B9EB6152611DF00053C68 /* darwin_usb.c */; };
 		1D4B9EB9152611DF00053C68 /* darwin_usb.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D4B9EB7152611DF00053C68 /* darwin_usb.h */; };
 		1D4B9ECA1526127A00053C68 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D4B9EC91526127A00053C68 /* config.h */; };
-		1D4B9ED51526141A00053C68 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D4B9ED41526141A00053C68 /* CoreFoundation.framework */; };
 		1D4B9ED91526142800053C68 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D4B9ED81526142800053C68 /* IOKit.framework */; };
 		1D4B9F04152614DA00053C68 /* liblibusb-1.0.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2AAC0630554660B00DB518D /* liblibusb-1.0.0.dylib */; };
+		1DDF9BE7156C2F83005381FA /* poll_posix.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DDF9BE5156C2F83005381FA /* poll_posix.h */; };
+		1DDF9BE8156C2F83005381FA /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DDF9BE6156C2F83005381FA /* version.h */; };
+		1DDF9BFF156C31DF005381FA /* threads_posix.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF9BFD156C31DF005381FA /* threads_posix.c */; };
+		1DDF9C00156C31DF005381FA /* threads_posix.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DDF9BFE156C31DF005381FA /* threads_posix.h */; };
+		1DDF9C3A156C332D005381FA /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DDF9C39156C332D005381FA /* CoreFoundation.framework */; };
+		1DDF9C3E156C3351005381FA /* libobjc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DDF9C3D156C3351005381FA /* libobjc.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,8 +49,13 @@
 		1D4B9EB6152611DF00053C68 /* darwin_usb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = darwin_usb.c; sourceTree = "<group>"; };
 		1D4B9EB7152611DF00053C68 /* darwin_usb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = darwin_usb.h; sourceTree = "<group>"; };
 		1D4B9EC91526127A00053C68 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
-		1D4B9ED41526141A00053C68 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		1D4B9ED81526142800053C68 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		1DDF9BE5156C2F83005381FA /* poll_posix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = poll_posix.h; sourceTree = "<group>"; };
+		1DDF9BE6156C2F83005381FA /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		1DDF9BFD156C31DF005381FA /* threads_posix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = threads_posix.c; sourceTree = "<group>"; };
+		1DDF9BFE156C31DF005381FA /* threads_posix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = threads_posix.h; sourceTree = "<group>"; };
+		1DDF9C39156C332D005381FA /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		1DDF9C3D156C3351005381FA /* libobjc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libobjc.dylib; path = usr/lib/libobjc.dylib; sourceTree = SDKROOT; };
 		D2AAC0630554660B00DB518D /* liblibusb-1.0.0.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "liblibusb-1.0.0.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -54,8 +64,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D4B9ED51526141A00053C68 /* CoreFoundation.framework in Frameworks */,
 				1D4B9ED91526142800053C68 /* IOKit.framework in Frameworks */,
+				1DDF9C3A156C332D005381FA /* CoreFoundation.framework in Frameworks */,
+				1DDF9C3E156C3351005381FA /* libobjc.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,8 +78,9 @@
 			children = (
 				08FB7795FE84155DC02AAC07 /* Source */,
 				1AB674ADFE9D54B511CA2CBB /* Products */,
-				1D4B9ED41526141A00053C68 /* CoreFoundation.framework */,
 				1D4B9ED81526142800053C68 /* IOKit.framework */,
+				1DDF9C39156C332D005381FA /* CoreFoundation.framework */,
+				1DDF9C3D156C3351005381FA /* libobjc.dylib */,
 			);
 			name = "libusb-1.0.0";
 			sourceTree = "<group>";
@@ -76,6 +88,10 @@
 		08FB7795FE84155DC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				1DDF9BFD156C31DF005381FA /* threads_posix.c */,
+				1DDF9BFE156C31DF005381FA /* threads_posix.h */,
+				1DDF9BE5156C2F83005381FA /* poll_posix.h */,
+				1DDF9BE6156C2F83005381FA /* version.h */,
 				1D4B9EC91526127A00053C68 /* config.h */,
 				1D4B9EB6152611DF00053C68 /* darwin_usb.c */,
 				1D4B9EB7152611DF00053C68 /* darwin_usb.h */,
@@ -108,6 +124,9 @@
 				1D4B9EB4152611BE00053C68 /* libusbi.h in Headers */,
 				1D4B9EB9152611DF00053C68 /* darwin_usb.h in Headers */,
 				1D4B9ECA1526127A00053C68 /* config.h in Headers */,
+				1DDF9BE7156C2F83005381FA /* poll_posix.h in Headers */,
+				1DDF9BE8156C2F83005381FA /* version.h in Headers */,
+				1DDF9C00156C31DF005381FA /* threads_posix.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +185,7 @@
 				1D4B9EB2152611BE00053C68 /* io.c in Sources */,
 				1D4B9EB5152611BE00053C68 /* sync.c in Sources */,
 				1D4B9EB8152611DF00053C68 /* darwin_usb.c in Sources */,
+				1DDF9BFF156C31DF005381FA /* threads_posix.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

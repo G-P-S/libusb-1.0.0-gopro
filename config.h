@@ -2,26 +2,29 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* Default visibility */
-#define API_EXPORTED __attribute__((visibility("default")))
+#define DEFAULT_VISIBILITY __attribute__((visibility("default")))
 
 /* Debug message logging */
-#undef ENABLE_DEBUG_LOGGING */
+/* #undef ENABLE_DEBUG_LOGGING */
 
 /* Message logging */
-//#define ENABLE_LOGGING 1
+// #define ENABLE_LOGGING 1
 #undef ENABLE_LOGGING
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #define HAVE_DLFCN_H 1
 
+/* Define to 1 if you have the `gettimeofday' function. */
+#define HAVE_GETTIMEOFDAY 1
+
 /* Define to 1 if you have the <inttypes.h> header file. */
 #define HAVE_INTTYPES_H 1
 
-/* Define to 1 if you have the `rt' library (-lrt). */
-/* #undef HAVE_LIBRT */
-
 /* Define to 1 if you have the <memory.h> header file. */
 #define HAVE_MEMORY_H 1
+
+/* Define to 1 if you have the <poll.h> header file. */
+#define HAVE_POLL_H 1
 
 /* Define to 1 if you have the <stdint.h> header file. */
 #define HAVE_STDINT_H 1
@@ -35,8 +38,14 @@
 /* Define to 1 if you have the <string.h> header file. */
 #define HAVE_STRING_H 1
 
+/* Define to 1 if the system has the type `struct timespec'. */
+#define HAVE_STRUCT_TIMESPEC 1
+
 /* Define to 1 if you have the <sys/stat.h> header file. */
 #define HAVE_SYS_STAT_H 1
+
+/* Define to 1 if you have the <sys/time.h> header file. */
+#define HAVE_SYS_TIME_H 1
 
 /* Define to 1 if you have the <sys/types.h> header file. */
 #define HAVE_SYS_TYPES_H 1
@@ -52,46 +61,56 @@
 /* #undef NO_MINUS_C_MINUS_O */
 
 /* Darwin backend */
-#define OS_DARWIN /**/
+#define OS_DARWIN 1
 
 /* Linux backend */
 /* #undef OS_LINUX */
+
+/* OpenBSD backend */
+/* #undef OS_OPENBSD */
+
+/* Windows backend */
+/* #undef OS_WINDOWS */
 
 /* Name of package */
 #define PACKAGE "libusb"
 
 /* Define to the address where bug reports for this package should be sent. */
-#define PACKAGE_BUGREPORT ""
+#define PACKAGE_BUGREPORT "libusb-devel@lists.sourceforge.net"
 
 /* Define to the full name of this package. */
 #define PACKAGE_NAME "libusb"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "libusb 1.0.8"
+#define PACKAGE_STRING "libusb 1.0.9"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "libusb"
 
 /* Define to the home page for this package. */
-#define PACKAGE_URL ""
+#define PACKAGE_URL "http://www.libusb.org/"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.0.8"
+#define PACKAGE_VERSION "1.0.9"
+
+/* type of second poll() argument */
+#define POLL_NFDS_TYPE nfds_t
 
 /* Define to 1 if you have the ANSI C header files. */
 #define STDC_HEADERS 1
 
-/* Backend handles timeout */
-#define USBI_OS_HANDLES_TIMEOUT /**/
+/* Use POSIX Threads */
+#define THREADS_POSIX 1
 
 /* timerfd headers available */
 /* #undef USBI_TIMERFD_AVAILABLE */
 
 /* Version number of package */
-#define VERSION "1.0.8"
+#define VERSION "1.0.9"
 
 /* Use GNU extensions */
-#define _GNU_SOURCE /**/
+#define _GNU_SOURCE 1
+#define LIBUSB_DESCRIBE ""
 
 /* Define to `__inline__' or `__inline' if that's what the C compiler
    calls it, or to nothing if 'inline' is not supported under any name.  */
