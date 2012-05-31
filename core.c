@@ -629,6 +629,7 @@ ssize_t API_EXPORTED libusb_get_device_list(libusb_context *ctx,
 	if (!discdevs)
 		return LIBUSB_ERROR_NO_MEM;
 
+	//fprintf(stderr, "%s:%s:%d \n", __FILE__, __FUNCTION__, __LINE__);
 	r = usbi_backend->get_device_list(ctx, &discdevs);
 	if (r < 0) {
 		len = r;

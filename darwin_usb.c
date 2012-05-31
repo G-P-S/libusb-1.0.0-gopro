@@ -197,7 +197,7 @@ static usb_device_t **usb_get_next_device (io_iterator_t deviceIterator, UInt32 
 
 
   while ((usbDevice = IOIteratorNext(deviceIterator))) {
-    result = IOCreatePlugInInterfaceForService(usbDevice, kIOUSBDeviceUserClientTypeID,
+   result = IOCreatePlugInInterfaceForService(usbDevice, kIOUSBDeviceUserClientTypeID,
 					       kIOCFPlugInInterfaceID, &plugInInterface,
 					       &score);
 
@@ -219,8 +219,9 @@ static usb_device_t **usb_get_next_device (io_iterator_t deviceIterator, UInt32 
   IODestroyPlugInInterface (plugInInterface);
 
   /* get the location from the device */
-  if (locationp)
-    (*(device))->GetLocationID(device, locationp);
+	if (locationp) {
+		(*(device))->GetLocationID(device, locationp);
+	}
 
   return device;
 }
@@ -466,7 +467,6 @@ static int get_configuration_index (struct libusb_device *dev, int config_value)
   for (i = 0 ; i < numConfig ; i++) {
     (*(priv->device))->GetConfigurationDescriptorPtr (priv->device, i, &desc);
 
-      // fprintf(stderr, "ConfigValue %d\n",desc->bConfigurationValue);
       if (config_value==0 && i==0 && libusb_le16_to_cpu (desc->bConfigurationValue)==1) {
           defaultIndex0 = true;
       }
@@ -612,6 +612,8 @@ static int darwin_cache_device_descriptor (struct libusb_context *ctx, struct li
 
   /* try to open the device (we can usually continue even if this fails) */
   is_open = ((*device)->USBDeviceOpenSeize(device) == kIOReturnSuccess);
+	
+	//fprintf(stderr, "%s:%s:%d\n", __FILE__, __FUNCTION__, __LINE__);
 
   /**** retrieve device descriptor ****/
   do {
@@ -628,7 +630,9 @@ static int darwin_cache_device_descriptor (struct libusb_context *ctx, struct li
      * devices and Apple's USB Prober doesn't bother to open the device before issuing a descriptor request.  Still,
      * to follow the spec as closely as possible, try opening the device */
 
-    ret = (*(device))->DeviceRequest (device, &req);
+	  //fprintf(stderr, "%s:%s:%d\n", __FILE__, __FUNCTION__, __LINE__);
+
+	  ret = (*(device))->DeviceRequest (device, &req);
 
     if (kIOReturnOverrun == ret && kUSBDeviceDesc == priv->dev_descriptor.bDescriptorType)
       /* received an overrun error but we still received a device descriptor */
@@ -636,7 +640,6 @@ static int darwin_cache_device_descriptor (struct libusb_context *ctx, struct li
 
 		if( (kIOReturnSuccess == ret || ret == kIOReturnNotResponding) &&
     		(0 == priv->dev_descriptor.bNumConfigurations || 0 == priv->dev_descriptor.bcdUSB)) {
-			fprintf( stderr, "%d %d %d %d\n", try_reconfigure, is_open, priv->dev_descriptor.idVendor, priv->dev_descriptor.idProduct );
 		}
 
 		//if( (kIOReturnSuccess == ret /*|| ret == kIOReturnNotResponding*/) &&
@@ -818,6 +821,7 @@ static int darwin_get_device_list(struct libusb_context *ctx, struct discovered_
   kern_return_t        kresult;
   UInt32               location;
 
+	//fprintf(stderr, "%s:%s:%d\n", __FILE__, __FUNCTION__, __LINE__);
   kresult = usb_setup_device_iterator (&deviceIterator, 0);
   if (kresult != kIOReturnSuccess)
     return darwin_to_libusb (kresult);
