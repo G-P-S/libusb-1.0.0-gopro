@@ -30,7 +30,7 @@
 		1D4B9EFD152614CE00053C68 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "~/Git/Apps/Macintosh/Libs/EmbedableFrameworks";
+			dstPath = $SRCROOT/../EmbedableFrameworks;
 			dstSubfolderSpec = 0;
 			files = (
 				1D4B9F04152614DA00053C68 /* liblibusb-1.0.0.dylib in CopyFiles */,
