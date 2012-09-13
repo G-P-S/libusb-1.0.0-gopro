@@ -163,6 +163,7 @@ static int usb_setup_device_iterator (io_iterator_t *deviceIterator, long locati
   if (!matchingDict)
     return kIOReturnError;
 
+	
   if (location) {
     CFMutableDictionaryRef propertyMatchDict = CFDictionaryCreateMutable(kCFAllocatorDefault, 0,
                                                                          &kCFTypeDictionaryKeyCallBacks,
@@ -594,6 +595,9 @@ static int darwin_check_configuration (struct libusb_context *ctx, struct libusb
   return 0;
 }
 
+#define ID_VENDOR_AMBA 0x4255
+#define ID_VENDOR_GOPRO 0x2672
+
 static int darwin_cache_device_descriptor (struct libusb_context *ctx, struct libusb_device *dev, usb_device_t **device) {
   struct darwin_device_priv *priv;
   int retries = 5, delay = 30000;
@@ -607,7 +611,17 @@ static int darwin_cache_device_descriptor (struct libusb_context *ctx, struct li
   (*device)->GetDeviceClass (device, &bDeviceClass);
   (*device)->GetDeviceProduct (device, &idProduct);
   (*device)->GetDeviceVendor (device, &idVendor);
+	/*
+	 see if this is one of the devices we are looking for
+	 Vendor ID_VENDOR_AMBA product 0x2001
+	 Vendor ID_VENDOR_GOPRO product 0x0001
+	 */
 
+	if (!((ID_VENDOR_AMBA == idVendor && 0x2001 == idProduct) || (ID_VENDOR_GOPRO == idVendor && 0x0001 == idProduct))) {
+		// do not even bother opening the device.
+		return -1;
+	}
+	
   priv = (struct darwin_device_priv *)dev->os_priv;
 
   /* try to open the device (we can usually continue even if this fails) */
@@ -827,6 +841,7 @@ static int darwin_get_device_list(struct libusb_context *ctx, struct discovered_
     return darwin_to_libusb (kresult);
 
   while ((device = usb_get_next_device (deviceIterator, &location)) != NULL) {
+	  //fprintf(stderr, "%s:%s:%d\n", __FILE__, __FUNCTION__, __LINE__);
     (void) process_new_device (ctx, device, location, _discdevs);
 
     (*(device))->Release(device);
